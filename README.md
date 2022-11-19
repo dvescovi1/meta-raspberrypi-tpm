@@ -64,6 +64,8 @@ git clone https://github.com/dvescovi1/meta-raspberrypi-tpm.git
 ### Init environment 
 
 ```
+```
+
 
 ### Bitbake
 
