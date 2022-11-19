@@ -1,8 +1,8 @@
-# Nginx, NodeJS and TPM2 from Infineon (SLx 9670) 
+# raspberry pi with TPM2 from Infineon (SLx 9670) 
 
 ### Hardware Prerequisites 
 
-Use the following Raspbeyy PI 4 rev. B with 4GB RAM
+Use the following Raspbeyy PI 4 rev. B with 4/8GB RAM
 
 https://www.raspberrypi.org/products/raspberry-pi-4-model-b/
 
@@ -58,14 +58,11 @@ cd ..
 ### Get this...
 
 ```
-git clone https://github.com/simonetolotti/meta-raspberrypi-web.git
+git clone https://github.com/dvescovi1/meta-raspberrypi-tpm.git
 ```
 
-### Init enviroment 
+### Init environment 
 
-```
-cd meta-raspberrypi-web
-./initRasp.sh
 ```
 
 ### Bitbake
@@ -74,50 +71,6 @@ cd meta-raspberrypi-web
 bitbake core-image-base
 ```
 
-## Note about Device Tree Source and Kernel Options
-
-### Insert Overlay DTS
-
-Download Linux Kernel for Raspberry
-
-```
-git clone https://github.com/raspberrypi/linux.git
-```
-
-go to the same branch name as Kernel used on this recipe (rpi-5.4.y should be the default branch)
-
-insert the following file on recipes-kernel append.
-
-```
-/arch/arm/boot/dts/overlays/tpm-slb9670-overlay.dts 
-```
-
-insert the following row on the local.conf file, so the Yocto-build will insert overlay on /boot/config.txt
-
-```
-RPI_EXTRA_CONFIG = "dtoverlay=tpm-slb9670"
-```
-
-### Kernel Options
-
-Enable the following 
-
-```
-CONFIG_HW_RANDOM_TPM=y
-CONFIG_TCG_TPM=y
-CONFIG_TCG_TIS_CORE=y
-CONFIG_TCG_TIS_SPI=y
-CONFIG_SECURITYFS=y
-CONFIG_TCG_TIS=y
-CONFIG_TCG_TIS_I2C_ATMEL=n
-CONFIG_TCG_TIS_I2C_INFINEON=n
-CONFIG_TCG_TIS_I2C_NUVOTON=n
-CONFIG_TCG_ATMEL=n
-CONFIG_TCG_VTPM_PROXY=n
-CONFIG_TCG_TIS_ST33ZP24_I2C=n
-CONFIG_TCG_TIS_ST33ZP24_SPI=n
-CONFIG_TRUSTED_KEYS=y
-```
 
 ## How to test TPM
 
