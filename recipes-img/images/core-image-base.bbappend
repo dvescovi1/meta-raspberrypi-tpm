@@ -1,7 +1,6 @@
 IMAGE_FEATURES_remove += "splash"
 
 IMAGE_INSTALL_append = " \
-  openssl \   
   tpm2-tools \
   libtss2 \
   libtss2-tcti-device \
@@ -14,6 +13,3 @@ IMAGE_INSTALL_append = " \
   tpm2-tss-engine-dev \ 
 "
 KERNEL_DEVICETREE =+ "overlays/tpm-slb9670.dtbo"
-
-IMAGE_FEATURES += "ssh-server-openssh"
-
